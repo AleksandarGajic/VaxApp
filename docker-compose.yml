@@ -1,0 +1,38 @@
+version: '3'
+services:
+  manufacturer:
+    image: nodejs-manufacturer
+    ports:
+      - 8080:8080
+    environment:
+      ENV_KAFKA_HOST: "host.docker.internal:9092"
+    extra_hosts: 
+      - "host.docker.internal:172.20.0.1"
+    networks:
+      - nodejs
+  authority:
+    image: nodejs-authority
+    ports:
+      - 8081:8081
+    environment:
+      ENV_KAFKA_HOST: "host.docker.internal:9092"
+    extra_hosts: 
+      - "host.docker.internal:172.20.0.1"
+    networks:
+      - nodejs
+  customer:
+    image: nodejs-customer
+    ports:
+      - 8082:8082
+    environment:
+      ENV_KAFKA_HOST: "host.docker.internal:9092"
+    extra_hosts: 
+      - "host.docker.internal:172.20.0.1"
+    networks:
+      - nodejs
+networks: 
+  nodejs:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.20.0.0/16"

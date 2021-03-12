@@ -1,0 +1,15 @@
+export enum HttpStatusCode {
+    Ok = 200,
+    Created = 201,
+    NoContent = 204,
+
+    BadRequest = 400,
+    Unathorized = 401,
+    Forbidden = 403,
+    NotFound = 404,
+
+    InternalServerError = 500
+}
+
+export const QueueNameShimpmentSent = 'shipment-sent';
+export const QueueNameShimpentVerified = 'shipment-verified';
